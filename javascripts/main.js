@@ -8,9 +8,21 @@ let person1 = [];
 let person2 = [];
 
 
-// event handler for <Start Cage Match>
+// function writes the output to the DOM
+// after parsing the Treehouse JSON data:
+// * displays the profile picture for each of the two profiles
+// * displays the total number of points for each profile
+// * clearly displays the cage match winner (person with most points)
+// * displays the winner's treehouse badges
+// * uses jquery .animate method to apply animation to the images
+const writeOutput = () => {
+console.log("writing output");
+};
+
+
+// event handler for <Start Cage Match> button
 $("#go").on("click", function(){
-// console.log("clicked");
+
 	Promise.all([loadTreeHse1(), loadTreeHse2()])
 	.then(function(result){
 // console.log("result :: ", result);
@@ -20,12 +32,13 @@ $("#go").on("click", function(){
 			} else {
 				person2.push(treehouseData);
 			}
-console.log("person1 :: ", person1);
-console.log("person2 :: ", person2);
-		})
-		.catch(function(fileError){
-			alert("This person does not have a Treehouse account ...");
+// console.log("person1 :: ", person1);
+// console.log("person2 :: ", person2);
 		});
+		writeOutput();
+	})
+	.catch(function(fileError){
+		alert("This person does not have a Treehouse account ...");
 	});
 });
 
@@ -34,17 +47,17 @@ console.log("person2 :: ", person2);
 // receives back from buildURL the ajax url string
 
 const buildURL = (userInputString) => {
-console.log("user text input :: ", $("#userInput1").val());
-console.log("user text input :: ", $("#userInput2").val());
-console.log("printing URL :: ", "https://teamtreehouse.com/" + userInputString + ".json");
+// console.log("user text input :: ", $("#userInput1").val());
+// console.log("user text input :: ", $("#userInput2").val());
+// console.log("printing URL :: ", "https://teamtreehouse.com/" + userInputString + ".json");
 	return "https://teamtreehouse.com/" + userInputString + ".json";
 };
 
 
 const loadTreeHse1 = (person1URL) => {
 	return new Promise ((resolve, reject) => {
-		$.ajax(buildURL($("#userInput1").val()))
-		// $.ajax("https://teamtreehouse.com/geoffwebb.json")
+		// $.ajax(buildURL($("#userInput1").val()))
+		$.ajax("https://teamtreehouse.com/geoffwebb.json")
 		.done ((data1) => resolve(data1))
 		.fail ((error) => reject(error));
 	});
@@ -52,8 +65,8 @@ const loadTreeHse1 = (person1URL) => {
 
 const loadTreeHse2 = (person2URL) => {
 	return new Promise ((resolve, reject) => {
-		$.ajax(buildURL($("#userInput2").val()))
-		// $.ajax("https://teamtreehouse.com/ellisthomas.json")
+		// $.ajax(buildURL($("#userInput2").val()))
+		$.ajax("https://teamtreehouse.com/ellisthomas.json")
 		.done ((data2) => resolve(data2))
 		.fail ((error) => reject(error));
 	});
