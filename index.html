@@ -10,25 +10,37 @@
 <body>
 	<h1>Treehouse Cage Match</h1>
 
-	<div class="row">
-	  <div class="col-lg-6">
-	    <div class="input-group">
-	      <!-- <span class="input-group-btn"> -->
-	        <!-- <button class="btn btn-default" type="button">Go!</button> -->
-	      <!-- </span> -->
-	      <input type="text" class="form-control" placeholder="Enter First Name Here ...">
-	      <input type="text" class="form-control" placeholder="Enter Second Name Here ...">
-	    </div><!-- /input-group -->
-	  </div><!-- /.col-lg-6 -->
-	  <div class="col-lg-6">
+	<div id="inputFields">
+		<div class="row">
+		  <div class="col-lg-6">
+		    <div class="input-group">
+		      <span class="label label-info">Player 1:</span>
+		      <input type="text" id="userInput1" class="form-control" placeholder="Enter First Name Here ...">
+		    </div><!-- /input-group -->
+		  </div class="col-lg-6">
+
+
+		  <div class="col-lg-6">
+		    <div class="input-group">
+		      <span class="label label-info">Player 2:</span>
+		      <input type="text" id="userInput2" class="form-control" placeholder="Enter Second Name Here ...">
+		    </div><!-- /input-group -->
+		  </div class="col-lg-6">
+		 </div>
+
+
 	    <div class="input-group">
 	      <span class="input-group-btn">
 	        <button id="go" class="btn btn-default" type="button">Start Cage Match</button>
 	      </span>
 	    </div> <!--/input-group -->
-	   </div> <!--/.col-lg-6 -->
-	</div> <!--/.row -->
+	</div> <!--/inputFields -->
+
+	<div id="outputContainer">
+		<!-- write output here --> 
+	</div>
   
+
 	<script type="text/javascript" src="./lib/bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="./lib/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="./javascripts/main.js"></script>
