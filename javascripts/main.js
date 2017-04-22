@@ -17,6 +17,14 @@ let person2 = [];
 // * uses jquery .animate method to apply animation to the images
 const writeOutput = () => {
 console.log("writing output");
+	domString = "";
+
+	// display profile pics
+	domString += `<div class="pic row">`;
+	domString += `<div class="col-sm-6">`;
+	// domString += `<img src="${humanArray[i].image}">`;
+	domString += `</div>`; // close ".col-sm-6"
+	domString += `</div>`; // close ".pic row"
 };
 
 
@@ -28,12 +36,14 @@ $("#go").on("click", function(){
 // console.log("result :: ", result);
 		result.forEach(function(treehouseData, index){
 			if (index === 0) {
-				person1.push(treehouseData);
+				person1 = treehouseData;
+				// person1.push(treehouseData);
 			} else {
-				person2.push(treehouseData);
+				person2 = treehouseData;
+				// person2.push(treehouseData);
 			}
-// console.log("person1 :: ", person1);
-// console.log("person2 :: ", person2);
+console.log("person1 :: ", person1);
+console.log("person2 :: ", person2);
 		});
 		writeOutput();
 	})
