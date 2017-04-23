@@ -41,22 +41,55 @@ input[type="text"] {
 	background: #bec9d1;
 	border: 3px solid black;
 	border-radius: 10px;
+	outline: none;
 }
 
 
 /**************************************************/
 /* style output
 /**************************************************/
-img {
-	height: 50%;
+.person1Panel {
+	margin-top: 15px;
+	margin-left: 23%;
+	padding: auto;
 }
 
 
+.person2Panel {
+	margin-top: 15px;
+	margin-left: 7%;
+}
 
 
+#thumbnail {
+	border: 2px solid black;
+}
 
 
+.points {	
+	font-size: 20px;
+	margin-top: 40px;
+	margin-left: 10%;
+	color: black;
+	font-weight: 500;
 
+}
+
+
+#winner {
+	font-size: 40px;
+	margin-top: 10%;
+	margin-left: 20%
+	width: 200px;
+	padding: 35px 20px 35px 40px;
+	background-color: #FA5C28;
+	border: 2px solid black;
+}
+
+.winnerName {
+	margin-top: 60px;
+	border-bottom: 5px dotted red;
+}
 
 
 

@@ -24,16 +24,67 @@ console.log("person2 :: ", person2);
 
 	// display profile pics
 	domString += `<div class="pic row">`;
-	domString += `<div class="col-sm-4">`;
-	domString += `<div><img src="${person1.gravatar_url}">`;
-	domString += `<img src="${person2.gravatar_url}">`;
-	domString += `</div>`;
+	domString += `<div class="col-sm-6">`;
+	domString += `<section class="person1Panel">`;
+	domString += `<img id="thumbnail" height="200" width="200" src="${person1.gravatar_url}">`;
+	domString += `<section class="points">${getPoints(person1)} points</section>`;
+	domString += `</section>`;
 	domString += `</div>`; // close ".col-sm-6"
+
+	domString += `<div class="col-sm-6">`;
+	domString += `<section class="person2Panel">`;
+	domString += `<img id="thumbnail" height="200" width="200" src="${person2.gravatar_url}">`;
+	domString += `<section class="points">${getPoints(person2)} points</section>`;
+	domString += `</section>`;
+	domString += `</div>`; // close ".col-sm-6"
+
 	domString += `</div>`; // close ".pic row"
+
+
+	domString += `<div class="col-sm-4"></div>`;
+	domString += `<div class="col-sm-4">`;
+	domString += `<div id="winner"><span class="winnerName">${getWinner(person1, person2)}</span> wins!!!!</div>`;
+	domString += `</div>`;
+	domString += `<div class="col-sm-4"></div>`;
+	
+
+	domString += ``;
 
 	$("#outputContainer").append(domString);
 };
 
+
+const getPoints = (thisGuy) => {
+	
+	let pointsArray = thisGuy.points;
+	return pointsArray.total;
+};
+
+
+const getWinner = (person1, person2) => {
+
+	let pointsArray1 = person1.points;
+	let pointsArray2 = person2.points;
+
+	if (pointsArray1.total > pointsArray2.total) {
+		return person1.profile_name;
+	} else {
+		return person2.profile_name;
+	}
+};
+
+
+const getBadges = (person1, person2) => {
+
+	let pointsArray1 = person1.points;
+	let pointsArray2 = person2.points;
+
+	if (pointsArray1.total > pointsArray2.total) {
+		return person1.profile_name;
+	} else {
+		return person2.profile_name;
+	}
+};
 
 
 // event handerl will read text input string, e.g., "geoffwebb"
