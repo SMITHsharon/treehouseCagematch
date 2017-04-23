@@ -14,55 +14,58 @@ let person2 = [];
 // * displays the total number of points for each profile
 // * clearly displays the cage match winner (person with most points)
 // * displays a button, <Show Badges>
-// * uses jquery .animate method to apply animation to the images
 const writeOutput = () => {
 
 	domString = "";
 
+	// displays information for Player 1
 	domString += `<div class="pic row">`;
 	domString += `<div class="col-sm-3"></div>`;
 	domString += `<div class="col-sm-3">`;
 	domString += `<section class="personPanel">`;
-	domString += `<img id="thumbnail" height="200" width="200" src="${person1.gravatar_url}">`;
+	domString += `<img id="profileThumbnail" height="200" width="200" src="${person1.gravatar_url}">`;
 	domString += `<section class="points">${getPoints(person1)} points</section>`;
 	domString += `</section>`;
 	domString += `</div>`; // close ".col-sm-6"
 
+	// displays information for Player 2
 	domString += `<div class="col-sm-1"></div>`;
 	domString += `<div class="col-sm-3">`;
 	domString += `<section class="personPanel">`;
-	domString += `<img id="thumbnail" height="200" width="200" src="${person2.gravatar_url}">`;
+	domString += `<img id="profileThumbnail" height="200" width="200" src="${person2.gravatar_url}">`;
 	domString += `<section class="points">${getPoints(person2)} points</section>`;
 	domString += `</section>`;
 	domString += `</div>`; // close ".col-sm-6"
 
 	domString += `</div>`; // close ".pic row"
 
-
+	// displays the Winner of the Cage Match
 	domString += `<div class="col-sm-3"></div>`;
 	domString += `<div class="col-sm-6">`;
-	domString += `<div id="winner"><span class="winnerName">${getWinner(person1, person2)}</span> wins!!!!</div>`;
+	domString += `<div id="winner"><span class="winnerName">${getWinnerName(person1, person2)}</span> wins!!!!</div>`;
 	domString += `</div>`;
 	domString += `<div class="col-sm-3"></div>`;
 	
+	// displays a button, <Show Badges>
 	domString += `<div class="col-sm-4"></div>`;
 	domString += `<div class="col-sm-4">;`;
 	domString += `<button id="showBadges" class="btn btn-default btn-lg" type="button">Show Badges!</button>`;
 	domString += `</div><div class="col-sm-4"></div>`;
 
-
 	$("#outputContainer").append(domString);
 };
 
 
-const getPoints = (thisGuy) => {
-	
+// function returns the total points earned by the given Player
+const getPoints = (thisGuy) => {	
 	let pointsArray = thisGuy.points;
 	return pointsArray.total;
 };
 
 
-const getWinner = (person1, person2) => {
+// function determines the Winner of the Cage Match
+// i.e., Player with the most points
+const getWinnerName = (person1, person2) => {
 
 	let pointsArray1 = person1.points;
 	let pointsArray2 = person2.points;
@@ -75,20 +78,7 @@ const getWinner = (person1, person2) => {
 };
 
 
-const getBadges = (person1, person2) => {
-
-	let pointsArray1 = person1.points;
-	let pointsArray2 = person2.points;
-
-	if (pointsArray1.total > pointsArray2.total) {
-		return person1.profile_name;
-	} else {
-		return person2.profile_name;
-	}
-};
-
-
-// function gets the array of the Winner's Treehouse badges
+// function returns an array of the Winner's Treehouse badges
 const getWinnerBadges = () => {
 
 	let pointsArray1 = person1.points;
@@ -104,14 +94,45 @@ const getWinnerBadges = () => {
 
 // function writes the Winner's Treehouse badges to the DOM
 const showWinnerBadges = (winnerBadges) => {
-console.log("ready to show badges of winner :: ", winnerBadges);
+
+	let winner = getWinnerName(person1, person2).toUpperCase();
+
+	$("#inputFields").empty(); // clear the DOM of the input fields
+	$("#outputContainer").empty(); // clear the DOM outputContainer
+
+	domString = "";
+
+	domString += `<div class="row">`;
+	domString += `<div class="col-sm-3"></div>`;
+	domString += `<div id="badgeNameHeader" class="col-sm-6">${winner}'s BADGES</div>`;
+	domString += `<div class="col-sm-3"></div>`;
+	domString += `</div>`;
+
+
+	domString += `<div class="row">`;
+	var colCounter = 0;
+	for (let i=0; i<winnerBadges.length; i++) {
+		domString += `<div class="col-sm-2">`;
+		domString += `<img class="badgeURL thumbnail" height="200" width="200" src="${winnerBadges[i].icon_url}" alt="course badge">`;
+		domString += `</div>`;
+
+		colCounter += 1;
+			if (colCounter === 6) { /// wraps this row
+
+				domString += `</div>`; // end of row
+				domString += `<div class="row">`;
+				colCounter = 0;
+		} // colCounter <if> 
+	} // <for>
+
+	$("#outputContainer").append(domString);
 };
 
 
 
 // event handler for <Show Badges> button
 // calls function that displays the Winner's badges
-$("body").on("click", #showBadges (e) => {
+$("body").on("click", "#showBadges", () => {
 	showWinnerBadges(getWinnerBadges());
 });
 
