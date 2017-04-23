@@ -1,18 +1,18 @@
 body {
-	background-color: lightblue;
+	background-color: #E9F1F5;
 }
 
 h4 {
 	margin-left: 15px;
+	color: #FA5C28;
 }
 
 
 /**************************************************/
-/* style input fields and <Start Cage Match> button
+/* style input fields and <Start Cage Match>, <Show Badges> buttons
 /**************************************************/
 .nameInput {
 	margin-top: 10px;
-	margin-left: 10%;
 }
 
 
@@ -33,11 +33,10 @@ input[type="text"] {
 }
 
 
-#go {
+#go, #showBadges {
 	margin-top: 30px;
-	margin-left: 31%;
+	margin-left: 22%;
 	font-size: 27px;
-	padding-left: 10px 35px;
 	background: #bec9d1;
 	border: 3px solid black;
 	border-radius: 10px;
@@ -45,19 +44,12 @@ input[type="text"] {
 }
 
 
+
 /**************************************************/
 /* style output
 /**************************************************/
-.person1Panel {
-	margin-top: 15px;
-	margin-left: 23%;
-	padding: auto;
-}
-
-
-.person2Panel {
-	margin-top: 15px;
-	margin-left: 7%;
+.personPanel {
+	margin-top: 50px;
 }
 
 
@@ -88,6 +80,7 @@ input[type="text"] {
 
 .winnerName {
 	margin-top: 60px;
+	margin-left: 17%;
 	border-bottom: 5px dotted red;
 }
 

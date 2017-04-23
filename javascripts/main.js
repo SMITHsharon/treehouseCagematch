@@ -13,26 +13,24 @@ let person2 = [];
 // * displays the profile picture for each of the two profiles
 // * displays the total number of points for each profile
 // * clearly displays the cage match winner (person with most points)
-// * displays the winner's treehouse badges
+// * displays a button, <Show Badges>
 // * uses jquery .animate method to apply animation to the images
 const writeOutput = () => {
-console.log("writing output");
-console.log("person1 :: ", person1);
-console.log("person2 :: ", person2);
 
 	domString = "";
 
-	// display profile pics
 	domString += `<div class="pic row">`;
-	domString += `<div class="col-sm-6">`;
-	domString += `<section class="person1Panel">`;
+	domString += `<div class="col-sm-3"></div>`;
+	domString += `<div class="col-sm-3">`;
+	domString += `<section class="personPanel">`;
 	domString += `<img id="thumbnail" height="200" width="200" src="${person1.gravatar_url}">`;
 	domString += `<section class="points">${getPoints(person1)} points</section>`;
 	domString += `</section>`;
 	domString += `</div>`; // close ".col-sm-6"
 
-	domString += `<div class="col-sm-6">`;
-	domString += `<section class="person2Panel">`;
+	domString += `<div class="col-sm-1"></div>`;
+	domString += `<div class="col-sm-3">`;
+	domString += `<section class="personPanel">`;
 	domString += `<img id="thumbnail" height="200" width="200" src="${person2.gravatar_url}">`;
 	domString += `<section class="points">${getPoints(person2)} points</section>`;
 	domString += `</section>`;
@@ -41,14 +39,17 @@ console.log("person2 :: ", person2);
 	domString += `</div>`; // close ".pic row"
 
 
-	domString += `<div class="col-sm-4"></div>`;
-	domString += `<div class="col-sm-4">`;
+	domString += `<div class="col-sm-3"></div>`;
+	domString += `<div class="col-sm-6">`;
 	domString += `<div id="winner"><span class="winnerName">${getWinner(person1, person2)}</span> wins!!!!</div>`;
 	domString += `</div>`;
-	domString += `<div class="col-sm-4"></div>`;
+	domString += `<div class="col-sm-3"></div>`;
 	
+	domString += `<div class="col-sm-4"></div>`;
+	domString += `<div class="col-sm-4">;`;
+	domString += `<button id="showBadges" class="btn btn-default btn-lg" type="button">Show Badges!</button>`;
+	domString += `</div><div class="col-sm-4"></div>`;
 
-	domString += ``;
 
 	$("#outputContainer").append(domString);
 };
@@ -87,13 +88,38 @@ const getBadges = (person1, person2) => {
 };
 
 
-// event handerl will read text input string, e.g., "geoffwebb"
-// receives back from buildURL the ajax url string
+// function gets the array of the Winner's Treehouse badges
+const getWinnerBadges = () => {
 
+	let pointsArray1 = person1.points;
+	let pointsArray2 = person2.points;
+
+	if (pointsArray1.total > pointsArray2.total) {
+		return person1.badges;
+	} else {
+		return person2.badges;
+	}
+};
+
+
+// function writes the Winner's Treehouse badges to the DOM
+const showWinnerBadges = (winnerBadges) => {
+console.log("ready to show badges of winner :: ", winnerBadges);
+};
+
+
+
+// event handler for <Show Badges> button
+// calls function that displays the Winner's badges
+$("body").on("click", #showBadges (e) => {
+	showWinnerBadges(getWinnerBadges());
+});
+
+
+
+// event handler will read text input string, e.g., "geoffwebb"
+// receives back from buildURL the ajax url string
 const buildURL = (userInputString) => {
-// console.log("user text input :: ", $("#userInput1").val());
-// console.log("user text input :: ", $("#userInput2").val());
-// console.log("printing URL :: ", "https://teamtreehouse.com/" + userInputString + ".json");
 	return "https://teamtreehouse.com/" + userInputString + ".json";
 };
 
@@ -122,14 +148,11 @@ $("#go").on("click", () => {
 
 	Promise.all([loadTreeHse1(), loadTreeHse2()])
 	.then(function(result){
-// console.log("result :: ", result);
 		result.forEach( (treehouseData, index) => {
 			if (index === 0) {
 				person1 = treehouseData;
-				// person1.push(treehouseData);
 			} else {
 				person2 = treehouseData;
-				// person2.push(treehouseData);
 			}
 		});
 
@@ -150,38 +173,11 @@ $("#go").on("click", () => {
 // 		} else {
 // 			person2.push(treehouseData);
 // 		}
-// console.log("person1 :: ", person1);
-// console.log("person2 :: ", person2);
 // 	})
 // 	.catch(function(fileError){
 // 		alert("This person does not have a Treehouse account ...");
 // 	});
 // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
