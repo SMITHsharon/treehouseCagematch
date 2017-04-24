@@ -30,6 +30,7 @@ input {
 
 input[type="text"] {
     width: 200px;
+    font-size: 24px;
 }
 
 
