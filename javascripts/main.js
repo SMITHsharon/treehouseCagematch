@@ -1,4 +1,7 @@
 
+// add case of a tie
+// add button <click a badge> 
+
 $(document).ready(function(){
 
 
@@ -40,7 +43,14 @@ const writeOutput = () => {
 	// displays the Winner of the Cage Match
 	domString += `<div class="col-sm-3"></div>`;
 	domString += `<div class="col-sm-6">`;
-	domString += `<div id="winner"><span class="winnerName">${getWinnerName(person1, person2)}</span><span class="wins"> wins!!!!</span></div>`;
+
+	domString += `<span class="clickAnimationPrompt">Click Winner Name ... </span>`;
+	let thisWinner = getWinnerName(person1, person2);
+	if (thisWinner === "tie") {
+		domString += `<div id="winner"><span class="winnerName">It's a Tie!</span></div>`;
+	} else {
+		domString += `<div id="winner"><span class="winnerName">${thisWinner}</span><span class="wins"> wins!!!!</span></div>`;
+	}
 	domString += `</div>`;
 	domString += `<div class="col-sm-3"></div>`;
 	
@@ -71,8 +81,11 @@ const writeOutput = () => {
 
 		if (pointsArray1.total > pointsArray2.total) {
 			return person1.profile_name;
-		} else {
+		} else 
+		if (pointsArray2.total > pointsArray1.total) {
 			return person2.profile_name;
+		} else {
+			return "tie";
 		}
 	};
 
@@ -103,7 +116,9 @@ const showWinnerBadges = (winnerBadges) => {
 	domString = "";
 
 	domString += `<div class="row">`;
-	domString += `<div class="col-sm-3"></div>`;
+	domString += `<div class="col-sm-3">`;
+	domString += `<span class="clickAnimationPrompt">Click on Winner's Name or Random Badges </span>`;
+	domString += `</div>`;
 	domString += `<div id="badgeNameHeader" class="col-sm-6">${winner}'s BADGES</div>`;
 	domString += `<div class="col-sm-3"></div>`;
 	domString += `</div>`;

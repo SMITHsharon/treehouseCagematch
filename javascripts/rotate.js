@@ -5,7 +5,7 @@ http://jsfiddle.net/Anatol/T6kDR/
 */
 
 // $.fn.rotate=function(options) {
-$.rotate=function(options) {
+$.rotate= (options) => {
   var $this=$(this), prefixes, opts, wait4css=0;
   prefixes=['-Webkit-', '-Moz-', '-O-', '-ms-', ''];
   opts=$.extend({
