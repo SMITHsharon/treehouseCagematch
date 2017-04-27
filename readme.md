@@ -47,6 +47,7 @@ This exercise displays two user input text fields that accept Treehouse user pro
 
 ### How To View The Screen 
 ```
+git clone https://github.com/SMITHsharon/treehouseCagematch.git
 cd treehouseCagematch
 cd lib
 bower install
